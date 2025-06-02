@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <title>Ne Giysem?</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body class="{{ theme_class }} {{ description | lower | replace(' ', '-') }}">
+    <div class="container">
+        <h1>Ne Giysem?</h1>
+
+        <p><strong>Konum:</strong> {{ city }}</p>
+        <p><strong>Şu an:</strong> <span id="current-time"></span></p>
+        <p><strong>Hava Durumu:</strong> {{ description }} | {{ temp }}°C</p>
+
+        <img src="http://openweathermap.org/img/wn/{{ icon_code }}@2x.png" alt="Hava Durumu İkonu" class="weather-icon" />
+
+        <form method="get" action="/" style="margin:20px 0;" class="city-form">
+            <label for="city-input">Konum Değiştir:</label>
+            <input type="text" name="city" id="city-input" placeholder="Şehir adı girin" required />
+            <button type="submit" class="btn-submit">Getir</button>
+        </form>
+
+        {% if error_message %}
+            <p class="error-message">{{ error_message }}</p>
+        {% endif %}
+
+        <h3>Kıyafet Önerileri:</h3>
+        <ul>
+        {% for item in advice %}
+        <li>
+            <span class="advice-icon">{{ item.icon }}</span>
+            <span class="advice-text">{{ item.text }}</span>
+        </li>
+        {% endfor %}
+        </ul>
+
+        <div class="logo-container">
+            <a href="https://emergemind.netlify.app/" target="_blank" rel="noopener noreferrer">
+                <img src="{{ url_for('static', filename='images/siyahlogo.png') }}" alt="Site Logosu" class="logo" />
+            </a>
+        </div>
+
+        <div class="social-share" style="margin-top: 20px;">
+            <a href="https://twitter.com/intent/tweet?text=Ne Giysem? Hava durumu ve kıyafet önerileri için ziyaret et!&url={{ request.url }}" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                <i class="fab fa-twitter fa-2x" style="color:#000000;"></i>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.url }}" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                <i class="fab fa-facebook fa-2x" style="color:#000000;"></i>
+            </a>
+            <a href="https://wa.me/?text=Ne Giysem? Hava durumu ve kıyafet önerileri: {{ request.url }}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                <i class="fab fa-whatsapp fa-2x" style="color:#000000;"></i>
+            </a>
+        </div>
+
+    </div>
+</body>
+
+<script>
+function updateTime() {
+  const now = new Date();
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const timeStr = now.toLocaleTimeString('tr-TR');
+  const dateStr = now.toLocaleDateString('tr-TR', options);
+  document.getElementById('current-time').textContent = `${dateStr} ${timeStr}`;
+}
+
+setInterval(updateTime, 1000);
+updateTime();
+</script>
+</html>

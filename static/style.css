@@ -1,0 +1,238 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #222;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    transition: background 0.5s ease;
+}
+
+body.güneşli {
+    background: linear-gradient(to right, #fceabb, #f8b500);
+    color: #444;
+}
+
+body.yağmur {
+    background: linear-gradient(to right, #4a90e2, #50c9f2);
+    color: white;
+}
+
+body.kar {
+    background: linear-gradient(to right, #e0eafc, #cfdef3);
+    color: #444;
+}
+
+body.bulutlu {
+    background: linear-gradient(to right, #bdc3c7, #2c3e50);
+    color: white;
+}
+
+body.rüzgar {
+    background: linear-gradient(to right, #89f7fe, #66a6ff);
+    color: #222;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px 40px;
+    border-radius: 20px;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    text-align: center;
+}
+
+h1 {
+    font-weight: 700;
+    color: #0d47a1;
+    margin-bottom: 25px;
+}
+
+p, ul {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+ul {
+    list-style: none;
+    margin-top: 20px;
+    text-align: left;
+    padding-left: 0;
+}
+
+li {
+    background: #e3f2fd;
+    margin: 10px 0;
+    padding: 12px 15px;
+    border-radius: 12px;
+    font-weight: 600;
+    color: #1565c0;
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Emoji ile metin arası boşluk */
+}
+
+.advice-icon {
+    font-size: 1.5rem; /* Emoji boyutu */
+    line-height: 1;
+}
+
+.advice-text {
+    flex: 1; /* Metin satır boyunca genişlesin */
+}
+
+li span {
+    font-size: 1.4rem;
+    display: inline-block;
+    width: 28px;
+    text-align: center;
+}
+
+/* Hava durumu ikonu */
+.weather-icon {
+    width: 100px;
+    height: 100px;
+    margin: 15px auto;
+    display: block;
+    filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.2));
+}
+
+.logo-container {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.logo {
+    max-width: 100px; /* Küçük yapıldı */
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+body.day {
+    background: linear-gradient(to right, #87ceeb, #f0f8ff);
+    color: #222;
+}
+
+body.night {
+    background: linear-gradient(to right, #2c3e50, #4ca1af);
+    color: #222;  /* Yazılar siyah olsun */
+}
+
+
+/* Şehir arama formu stilleri */
+.city-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.city-label {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-right: 5px;
+    white-space: nowrap;
+}
+
+#city-input {
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: 2px solid #0d47a1;
+    border-radius: 8px;
+    width: 200px;
+    max-width: 100%;
+    transition: border-color 0.3s ease;
+}
+
+#city-input:focus {
+    outline: none;
+    border-color: #064a9f;
+}
+
+.btn-submit {
+    background-color: #0d47a1;
+    color: white;
+    font-weight: 600;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 8px rgba(13, 71, 161, 0.4);
+}
+
+.btn-submit:hover {
+    background-color: #063d8c;
+}
+
+/* Hata mesajı */
+.error-message {
+    color: #d32f2f;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Sosyal medya paylaşım ikonları */
+.social-share p {
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.social-share a {
+    margin: 0 8px;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.social-share a:hover {
+    transform: scale(1.2);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .container {
+        padding: 20px 15px;
+        max-width: 90vw;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    h1 {
+        font-size: 1.6rem;
+    }
+    p, ul {
+        font-size: 1rem;
+    }
+    .weather-icon {
+        width: 70px;
+        height: 70px;
+        margin: 10px auto;
+    }
+    li {
+        font-size: 1rem;
+        padding: 10px 12px;
+        gap: 8px;
+    }
+    .advice-icon {
+        font-size: 1.3rem;
+    }
+    .logo {
+        max-width: 120px;
+    }
+}
