@@ -1,21 +1,24 @@
 from flask import Flask, render_template, request
-import requests,os
+import requests
+import os
 
 app = Flask(__name__)
 
 #WEATHER_API_KEY = "6ae2456201442ca5ed253639f5269c48"
-WEATHER_API_KEY = os.getenv("WEATHER_API_KEY")
+WEATHER_API_KEY = os.environ.get("WEATHER_API_KEY")
 
 WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather"
 
 
 def get_city():
+    # return "Sivas"
     try:
         res = requests.get("https://ipinfo.io/json")
         data = res.json()
         return data.get("city", "Istanbul")
     except:
         return "Istanbul"
+
 
 
 def get_weather(city):
@@ -129,6 +132,7 @@ def index():
                            request=request)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
+    import os
     port = int(os.environ.get("PORT", 5000))
-    app.run(debug=False, host='0.0.0.0', port=port)
+    app.run(host="0.0.0.0", port=port)
