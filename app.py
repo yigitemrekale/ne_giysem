@@ -29,11 +29,12 @@ def get_weather(city):
         "lang": "tr"
     }
     res = requests.get(WEATHER_URL, params=params)
-    try:
-        res.raise_for_status()
-    except requests.exceptions.HTTPError:
-        return None
-    return res.json()
+    print("Weather API URL:", res.url)
+    print("Weather API response code:", res.status_code)
+    print("Weather API response:", res.text)
+    data = res.json()
+    return data
+
 
 
 def get_outfit_advice(weather):
