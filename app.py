@@ -1,9 +1,11 @@
 from flask import Flask, render_template, request
-import requests
+import requests,os
 
 app = Flask(__name__)
 
-WEATHER_API_KEY = "6ae2456201442ca5ed253639f5269c48"
+#WEATHER_API_KEY = "6ae2456201442ca5ed253639f5269c48"
+WEATHER_API_KEY = os.getenv("WEATHER_API_KEY")
+
 WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather"
 
 
@@ -128,4 +130,5 @@ def index():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(debug=False, host='0.0.0.0', port=port)
