@@ -4,8 +4,9 @@ import os
 
 app = Flask(__name__)
 
-WEATHER_API_KEY = os.getenv("WEATHER_API_KEY", "6ae2456201442ca5ed253639f5269c48")
+WEATHER_API_KEY = '6ae2456201442ca5ed253639f5269c48'
 WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather"
+
 
 def get_city():
     try:
@@ -15,6 +16,7 @@ def get_city():
     except:
         return "Istanbul"
 
+
 def get_weather(city):
     params = {
         "q": city,
@@ -22,13 +24,12 @@ def get_weather(city):
         "units": "metric",
         "lang": "tr"
     }
+
     res = requests.get(WEATHER_URL, params=params)
     print("Weather API URL:", res.url)
     print("Weather API response code:", res.status_code)
     print("Weather API response:", res.text)
-    data = res.json()
-    return data
-
+    return res.json()
 
 
 def get_outfit_advice(weather):
@@ -48,11 +49,9 @@ def get_outfit_advice(weather):
             accessory = ("Güneş kremi sürmeyi unutmayın.", "🧴")
         shoes = ("Sandalet veya hafif ayakkabı tercih edin.", "👡")
         bottoms = ("Şort veya ince pantolon uygun.", "🩳")
-        outerwear = None
 
     elif 20 <= temp < 30:
         outfit = ("Tişört veya hafif gömlek giyin.", "👚")
-        outerwear = None
         bottoms = ("Hafif pantolon veya şort uygun.", "👖")
         shoes = ("Hafif ayakkabı tercih edin.", "👟")
         if "yağmur" in desc:
@@ -104,6 +103,7 @@ def index():
     city = request.args.get('city')
     if not city:
         city = get_city()
+
     weather = get_weather(city)
 
     if not weather or 'main' not in weather or 'weather' not in weather or len(weather['weather']) == 0:
